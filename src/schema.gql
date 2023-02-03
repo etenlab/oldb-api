@@ -1,0 +1,821 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @extends on INTERFACE | OBJECT
+
+directive @external on FIELD_DEFINITION | OBJECT
+
+directive @inaccessible on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION
+
+directive @key(fields: String!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT
+
+directive @link(import: [link__Import], url: String!) on SCHEMA
+
+directive @override(from: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @shareable on FIELD_DEFINITION | OBJECT
+
+directive @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+input CreateGlottologLanguage {
+  child_dialects: Int
+  glottocode: String
+  id: ID
+  iso_639_3: String
+  latitude: String
+  longitude: String
+  macro_area: String
+  name: String
+  top_level_family: String
+}
+
+input CreateIso6392 {
+  english_name: String
+  entry_type: String
+  french_name: String
+  german_name: String
+  id: ID
+  iso_639_1: String
+  iso_639_2: String
+}
+
+input CreateManyGlottologLanguagesInput {
+  """Array of records to create"""
+  glottologLanguages: [CreateGlottologLanguage!]!
+}
+
+input CreateManyIso6392sInput {
+  """Array of records to create"""
+  iso6392s: [CreateIso6392!]!
+}
+
+input CreateManySilLanguageIndicesInput {
+  """Array of records to create"""
+  silLanguageIndices: [CreateSilLanguageIndex!]!
+}
+
+input CreateOneGlottologLanguageInput {
+  """The record to create"""
+  glottologLanguage: CreateGlottologLanguage!
+}
+
+input CreateOneIso6392Input {
+  """The record to create"""
+  iso6392: CreateIso6392!
+}
+
+input CreateOneSilLanguageIndexInput {
+  """The record to create"""
+  silLanguageIndex: CreateSilLanguageIndex!
+}
+
+input CreateSilLanguageIndex {
+  country_code: String
+  id: ID
+  language_code: String
+  name: String
+  name_type: String
+}
+
+input CursorPaging {
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+input DeleteManyGlottologLanguagesInput {
+  """Filter to find records to delete"""
+  filter: GlottologLanguageDeleteFilter!
+}
+
+input DeleteManyIso6392sInput {
+  """Filter to find records to delete"""
+  filter: Iso6392DeleteFilter!
+}
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+input DeleteManySilLanguageIndicesInput {
+  """Filter to find records to delete"""
+  filter: SilLanguageIndexDeleteFilter!
+}
+
+input DeleteOneGlottologLanguageInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneIso6392Input {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneSilLanguageIndexInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+type GlottologLanguage {
+  child_dialects: Int!
+  glottocode: String!
+  id: ID!
+  iso_639_3: String!
+  latitude: String!
+  longitude: String!
+  macro_area: String!
+  name: String!
+  top_level_family: String!
+}
+
+input GlottologLanguageAggregateFilter {
+  and: [GlottologLanguageAggregateFilter!]
+  glottocode: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_3: StringFieldComparison
+  latitude: StringFieldComparison
+  longitude: StringFieldComparison
+  macro_area: StringFieldComparison
+  name: StringFieldComparison
+  or: [GlottologLanguageAggregateFilter!]
+  top_level_family: StringFieldComparison
+}
+
+type GlottologLanguageAggregateGroupBy {
+  glottocode: String
+  id: ID
+  iso_639_3: String
+  latitude: String
+  longitude: String
+  macro_area: String
+  name: String
+  top_level_family: String
+}
+
+type GlottologLanguageAggregateResponse {
+  avg: GlottologLanguageAvgAggregate
+  count: GlottologLanguageCountAggregate
+  groupBy: GlottologLanguageAggregateGroupBy
+  max: GlottologLanguageMaxAggregate
+  min: GlottologLanguageMinAggregate
+  sum: GlottologLanguageSumAggregate
+}
+
+type GlottologLanguageAvgAggregate {
+  id: Float
+}
+
+type GlottologLanguageConnection {
+  """Array of edges."""
+  edges: [GlottologLanguageEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type GlottologLanguageCountAggregate {
+  glottocode: Int
+  id: Int
+  iso_639_3: Int
+  latitude: Int
+  longitude: Int
+  macro_area: Int
+  name: Int
+  top_level_family: Int
+}
+
+input GlottologLanguageDeleteFilter {
+  and: [GlottologLanguageDeleteFilter!]
+  glottocode: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_3: StringFieldComparison
+  latitude: StringFieldComparison
+  longitude: StringFieldComparison
+  macro_area: StringFieldComparison
+  name: StringFieldComparison
+  or: [GlottologLanguageDeleteFilter!]
+  top_level_family: StringFieldComparison
+}
+
+type GlottologLanguageDeleteResponse {
+  child_dialects: Int
+  glottocode: String
+  id: ID
+  iso_639_3: String
+  latitude: String
+  longitude: String
+  macro_area: String
+  name: String
+  top_level_family: String
+}
+
+type GlottologLanguageEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the GlottologLanguage"""
+  node: GlottologLanguage!
+}
+
+input GlottologLanguageFilter {
+  and: [GlottologLanguageFilter!]
+  glottocode: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_3: StringFieldComparison
+  latitude: StringFieldComparison
+  longitude: StringFieldComparison
+  macro_area: StringFieldComparison
+  name: StringFieldComparison
+  or: [GlottologLanguageFilter!]
+  top_level_family: StringFieldComparison
+}
+
+type GlottologLanguageMaxAggregate {
+  glottocode: String
+  id: ID
+  iso_639_3: String
+  latitude: String
+  longitude: String
+  macro_area: String
+  name: String
+  top_level_family: String
+}
+
+type GlottologLanguageMinAggregate {
+  glottocode: String
+  id: ID
+  iso_639_3: String
+  latitude: String
+  longitude: String
+  macro_area: String
+  name: String
+  top_level_family: String
+}
+
+input GlottologLanguageSort {
+  direction: SortDirection!
+  field: GlottologLanguageSortFields!
+  nulls: SortNulls
+}
+
+enum GlottologLanguageSortFields {
+  glottocode
+  id
+  iso_639_3
+  latitude
+  longitude
+  macro_area
+  name
+  top_level_family
+}
+
+type GlottologLanguageSumAggregate {
+  id: Float
+}
+
+input GlottologLanguageUpdateFilter {
+  and: [GlottologLanguageUpdateFilter!]
+  glottocode: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_3: StringFieldComparison
+  latitude: StringFieldComparison
+  longitude: StringFieldComparison
+  macro_area: StringFieldComparison
+  name: StringFieldComparison
+  or: [GlottologLanguageUpdateFilter!]
+  top_level_family: StringFieldComparison
+}
+
+input IDFilterComparison {
+  eq: ID
+  gt: ID
+  gte: ID
+  iLike: ID
+  in: [ID!]
+  is: Boolean
+  isNot: Boolean
+  like: ID
+  lt: ID
+  lte: ID
+  neq: ID
+  notILike: ID
+  notIn: [ID!]
+  notLike: ID
+}
+
+type Iso6392 {
+  english_name: String!
+  entry_type: String
+  french_name: String!
+  german_name: String!
+  id: ID!
+  iso_639_1: String!
+  iso_639_2: String!
+}
+
+input Iso6392AggregateFilter {
+  and: [Iso6392AggregateFilter!]
+  english_name: StringFieldComparison
+  entry_type: StringFieldComparison
+  french_name: StringFieldComparison
+  german_name: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_1: StringFieldComparison
+  iso_639_2: StringFieldComparison
+  or: [Iso6392AggregateFilter!]
+}
+
+type Iso6392AggregateGroupBy {
+  english_name: String
+  entry_type: String
+  french_name: String
+  german_name: String
+  id: ID
+  iso_639_1: String
+  iso_639_2: String
+}
+
+type Iso6392AggregateResponse {
+  avg: Iso6392AvgAggregate
+  count: Iso6392CountAggregate
+  groupBy: Iso6392AggregateGroupBy
+  max: Iso6392MaxAggregate
+  min: Iso6392MinAggregate
+  sum: Iso6392SumAggregate
+}
+
+type Iso6392AvgAggregate {
+  id: Float
+}
+
+type Iso6392Connection {
+  """Array of edges."""
+  edges: [Iso6392Edge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type Iso6392CountAggregate {
+  english_name: Int
+  entry_type: Int
+  french_name: Int
+  german_name: Int
+  id: Int
+  iso_639_1: Int
+  iso_639_2: Int
+}
+
+input Iso6392DeleteFilter {
+  and: [Iso6392DeleteFilter!]
+  english_name: StringFieldComparison
+  entry_type: StringFieldComparison
+  french_name: StringFieldComparison
+  german_name: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_1: StringFieldComparison
+  iso_639_2: StringFieldComparison
+  or: [Iso6392DeleteFilter!]
+}
+
+type Iso6392DeleteResponse {
+  english_name: String
+  entry_type: String
+  french_name: String
+  german_name: String
+  id: ID
+  iso_639_1: String
+  iso_639_2: String
+}
+
+type Iso6392Edge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Iso6392"""
+  node: Iso6392!
+}
+
+input Iso6392Filter {
+  and: [Iso6392Filter!]
+  english_name: StringFieldComparison
+  entry_type: StringFieldComparison
+  french_name: StringFieldComparison
+  german_name: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_1: StringFieldComparison
+  iso_639_2: StringFieldComparison
+  or: [Iso6392Filter!]
+}
+
+type Iso6392MaxAggregate {
+  english_name: String
+  entry_type: String
+  french_name: String
+  german_name: String
+  id: ID
+  iso_639_1: String
+  iso_639_2: String
+}
+
+type Iso6392MinAggregate {
+  english_name: String
+  entry_type: String
+  french_name: String
+  german_name: String
+  id: ID
+  iso_639_1: String
+  iso_639_2: String
+}
+
+input Iso6392Sort {
+  direction: SortDirection!
+  field: Iso6392SortFields!
+  nulls: SortNulls
+}
+
+enum Iso6392SortFields {
+  english_name
+  entry_type
+  french_name
+  german_name
+  id
+  iso_639_1
+  iso_639_2
+}
+
+type Iso6392SumAggregate {
+  id: Float
+}
+
+input Iso6392UpdateFilter {
+  and: [Iso6392UpdateFilter!]
+  english_name: StringFieldComparison
+  entry_type: StringFieldComparison
+  french_name: StringFieldComparison
+  german_name: StringFieldComparison
+  id: IDFilterComparison
+  iso_639_1: StringFieldComparison
+  iso_639_2: StringFieldComparison
+  or: [Iso6392UpdateFilter!]
+}
+
+type Mutation {
+  createManyGlottologLanguages(input: CreateManyGlottologLanguagesInput!): [GlottologLanguage!]!
+  createManyIso6392s(input: CreateManyIso6392sInput!): [Iso6392!]!
+  createManySilLanguageIndices(input: CreateManySilLanguageIndicesInput!): [SilLanguageIndex!]!
+  createOneGlottologLanguage(input: CreateOneGlottologLanguageInput!): GlottologLanguage!
+  createOneIso6392(input: CreateOneIso6392Input!): Iso6392!
+  createOneSilLanguageIndex(input: CreateOneSilLanguageIndexInput!): SilLanguageIndex!
+  deleteGlottologLanguage(id: Int!): Boolean!
+  deleteManyGlottologLanguages(input: DeleteManyGlottologLanguagesInput!): DeleteManyResponse!
+  deleteManyIso6392s(input: DeleteManyIso6392sInput!): DeleteManyResponse!
+  deleteManySilLanguageIndices(input: DeleteManySilLanguageIndicesInput!): DeleteManyResponse!
+  deleteOneGlottologLanguage(input: DeleteOneGlottologLanguageInput!): GlottologLanguageDeleteResponse!
+  deleteOneIso6392(input: DeleteOneIso6392Input!): Iso6392DeleteResponse!
+  deleteOneSilLanguageIndex(input: DeleteOneSilLanguageIndexInput!): SilLanguageIndexDeleteResponse!
+  updateManyGlottologLanguages(input: UpdateManyGlottologLanguagesInput!): UpdateManyResponse!
+  updateManyIso6392s(input: UpdateManyIso6392sInput!): UpdateManyResponse!
+  updateManySilLanguageIndices(input: UpdateManySilLanguageIndicesInput!): UpdateManyResponse!
+  updateOneGlottologLanguage(input: UpdateOneGlottologLanguageInput!): GlottologLanguage!
+  updateOneIso6392(input: UpdateOneIso6392Input!): Iso6392!
+  updateOneSilLanguageIndex(input: UpdateOneSilLanguageIndexInput!): SilLanguageIndex!
+}
+
+type PageInfo {
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+}
+
+type Query {
+  glottologLanguage(
+    """The id of the record to find."""
+    id: ID!
+  ): GlottologLanguage
+  glottologLanguageAggregate(
+    """Filter to find records to aggregate on"""
+    filter: GlottologLanguageAggregateFilter
+  ): [GlottologLanguageAggregateResponse!]!
+  glottologLanguages(
+    """Specify to filter the records returned."""
+    filter: GlottologLanguageFilter! = {}
+
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [GlottologLanguageSort!]! = []
+  ): GlottologLanguageConnection!
+  iso6392(
+    """The id of the record to find."""
+    id: ID!
+  ): Iso6392
+  iso6392Aggregate(
+    """Filter to find records to aggregate on"""
+    filter: Iso6392AggregateFilter
+  ): [Iso6392AggregateResponse!]!
+  iso6392s(
+    """Specify to filter the records returned."""
+    filter: Iso6392Filter! = {}
+
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [Iso6392Sort!]! = []
+  ): Iso6392Connection!
+  silLanguageIndex(
+    """The id of the record to find."""
+    id: ID!
+  ): SilLanguageIndex
+  silLanguageIndexAggregate(
+    """Filter to find records to aggregate on"""
+    filter: SilLanguageIndexAggregateFilter
+  ): [SilLanguageIndexAggregateResponse!]!
+  silLanguageIndices(
+    """Specify to filter the records returned."""
+    filter: SilLanguageIndexFilter! = {}
+
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [SilLanguageIndexSort!]! = []
+  ): SilLanguageIndexConnection!
+}
+
+type SilLanguageIndex {
+  country_code: String!
+  id: ID!
+  language_code: String!
+  name: String!
+  name_type: String!
+}
+
+input SilLanguageIndexAggregateFilter {
+  and: [SilLanguageIndexAggregateFilter!]
+  country_code: StringFieldComparison
+  id: IDFilterComparison
+  language_code: StringFieldComparison
+  name: StringFieldComparison
+  name_type: StringFieldComparison
+  or: [SilLanguageIndexAggregateFilter!]
+}
+
+type SilLanguageIndexAggregateGroupBy {
+  country_code: String
+  id: ID
+  language_code: String
+  name: String
+  name_type: String
+}
+
+type SilLanguageIndexAggregateResponse {
+  avg: SilLanguageIndexAvgAggregate
+  count: SilLanguageIndexCountAggregate
+  groupBy: SilLanguageIndexAggregateGroupBy
+  max: SilLanguageIndexMaxAggregate
+  min: SilLanguageIndexMinAggregate
+  sum: SilLanguageIndexSumAggregate
+}
+
+type SilLanguageIndexAvgAggregate {
+  id: Float
+}
+
+type SilLanguageIndexConnection {
+  """Array of edges."""
+  edges: [SilLanguageIndexEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type SilLanguageIndexCountAggregate {
+  country_code: Int
+  id: Int
+  language_code: Int
+  name: Int
+  name_type: Int
+}
+
+input SilLanguageIndexDeleteFilter {
+  and: [SilLanguageIndexDeleteFilter!]
+  country_code: StringFieldComparison
+  id: IDFilterComparison
+  language_code: StringFieldComparison
+  name: StringFieldComparison
+  name_type: StringFieldComparison
+  or: [SilLanguageIndexDeleteFilter!]
+}
+
+type SilLanguageIndexDeleteResponse {
+  country_code: String
+  id: ID
+  language_code: String
+  name: String
+  name_type: String
+}
+
+type SilLanguageIndexEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the SilLanguageIndex"""
+  node: SilLanguageIndex!
+}
+
+input SilLanguageIndexFilter {
+  and: [SilLanguageIndexFilter!]
+  country_code: StringFieldComparison
+  id: IDFilterComparison
+  language_code: StringFieldComparison
+  name: StringFieldComparison
+  name_type: StringFieldComparison
+  or: [SilLanguageIndexFilter!]
+}
+
+type SilLanguageIndexMaxAggregate {
+  country_code: String
+  id: ID
+  language_code: String
+  name: String
+  name_type: String
+}
+
+type SilLanguageIndexMinAggregate {
+  country_code: String
+  id: ID
+  language_code: String
+  name: String
+  name_type: String
+}
+
+input SilLanguageIndexSort {
+  direction: SortDirection!
+  field: SilLanguageIndexSortFields!
+  nulls: SortNulls
+}
+
+enum SilLanguageIndexSortFields {
+  country_code
+  id
+  language_code
+  name
+  name_type
+}
+
+type SilLanguageIndexSumAggregate {
+  id: Float
+}
+
+input SilLanguageIndexUpdateFilter {
+  and: [SilLanguageIndexUpdateFilter!]
+  country_code: StringFieldComparison
+  id: IDFilterComparison
+  language_code: StringFieldComparison
+  name: StringFieldComparison
+  name_type: StringFieldComparison
+  or: [SilLanguageIndexUpdateFilter!]
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+input StringFieldComparison {
+  eq: String
+  gt: String
+  gte: String
+  iLike: String
+  in: [String!]
+  is: Boolean
+  isNot: Boolean
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  notILike: String
+  notIn: [String!]
+  notLike: String
+}
+
+input UpdateGlottologLanguage {
+  child_dialects: Int
+  glottocode: String
+  id: ID
+  iso_639_3: String
+  latitude: String
+  longitude: String
+  macro_area: String
+  name: String
+  top_level_family: String
+}
+
+input UpdateIso6392 {
+  english_name: String
+  entry_type: String
+  french_name: String
+  german_name: String
+  id: ID
+  iso_639_1: String
+  iso_639_2: String
+}
+
+input UpdateManyGlottologLanguagesInput {
+  """Filter used to find fields to update"""
+  filter: GlottologLanguageUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateGlottologLanguage!
+}
+
+input UpdateManyIso6392sInput {
+  """Filter used to find fields to update"""
+  filter: Iso6392UpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateIso6392!
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+input UpdateManySilLanguageIndicesInput {
+  """Filter used to find fields to update"""
+  filter: SilLanguageIndexUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateSilLanguageIndex!
+}
+
+input UpdateOneGlottologLanguageInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateGlottologLanguage!
+}
+
+input UpdateOneIso6392Input {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateIso6392!
+}
+
+input UpdateOneSilLanguageIndexInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateSilLanguageIndex!
+}
+
+input UpdateSilLanguageIndex {
+  country_code: String
+  id: ID
+  language_code: String
+  name: String
+  name_type: String
+}
+
+scalar link__Import
