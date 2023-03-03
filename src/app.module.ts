@@ -20,6 +20,7 @@ dotenv.config();
 import { GlottologLanguageModule } from './glottolog-language/glottolog-language.module';
 import { Iso6392Module } from './iso-639-2/iso-639-2.module';
 import { SilLanguageIndexModule } from './sil-language-index/sil-language-index.module';
+import { AirtableModule } from './airtable/airtable.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { SilLanguageIndexModule } from './sil-language-index/sil-language-index.
     GlottologLanguageModule,
     Iso6392Module,
     SilLanguageIndexModule,
+    AirtableModule,
   ],
   controllers: [AppController],
   providers: [AppService],
