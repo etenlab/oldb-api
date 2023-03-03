@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import Airtable, { Base, FieldSet, Records } from 'airtable';
 import { DataTable, TblHeader } from './airtable.dto';
+import { AirtableQueryModel } from './airtable.query';
 
 @Injectable()
 export class AirtableService {
@@ -28,8 +29,10 @@ export class AirtableService {
     dataTbl.headers = Object.keys(headerKeys).map(
       (hKey) => ({ field: hKey, title: hKey } as TblHeader),
     );
-    dataTbl.tableInfo.totalRows = dataTbl.rows.length;
-    dataTbl.tableInfo.title = 'SLI Data';
+    dataTbl.tableInfo.totalRows = Number(
+      process.env.AIRTABLE_TOTAL_RECORDS || 250,
+    );
+    dataTbl.tableInfo.title = process.env.AIRTABLE_TABLE_NAME;
     return dataTbl;
   }
   //#endregion
@@ -40,10 +43,10 @@ export class AirtableService {
     }).base(process.env.AIRTABLE_BASE_ID);
   }
 
-  async getTableRecords(query?: Record<string, any>): Promise<DataTable> {
+  async getTableRecords(query?: AirtableQueryModel): Promise<DataTable> {
     try {
       const recordSets = await this._airtableBase(process.env.AIRTABLE_TABLE_ID)
-        .select({})
+        .select({ pageSize: query.pageSize, offset: query.offset })
         .firstPage();
       return this.mapRawToDto(recordSets);
     } catch (error) {
