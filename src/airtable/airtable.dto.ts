@@ -4,7 +4,7 @@ export interface TableInfo {
   totalRows: number;
 }
 export interface TblHeader {
-  key: string;
+  field: string;
   title: string;
 }
 export interface TblRow {

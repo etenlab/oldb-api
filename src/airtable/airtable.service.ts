@@ -26,8 +26,10 @@ export class AirtableService {
       dataTbl.rows.push({ id: dataSet.id, ...dataSet.fields });
     }
     dataTbl.headers = Object.keys(headerKeys).map(
-      (hKey) => ({ key: hKey, title: hKey } as TblHeader),
+      (hKey) => ({ field: hKey, title: hKey } as TblHeader),
     );
+    dataTbl.tableInfo.totalRows = dataTbl.rows.length;
+    dataTbl.tableInfo.title = 'SLI Data';
     return dataTbl;
   }
   //#endregion
