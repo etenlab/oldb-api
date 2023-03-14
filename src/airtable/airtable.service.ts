@@ -3,6 +3,11 @@ import Airtable, { Base, FieldSet, Records } from 'airtable';
 import { DataTable, TblHeader } from './airtable.dto';
 import { AirtableQueryModel } from './airtable.query';
 
+interface mapRawToDtoParams {
+  dataSets: Records<FieldSet>;
+  totalCount: number;
+}
+
 @Injectable()
 export class AirtableService {
   private _airtableBase: Base;
@@ -12,7 +17,7 @@ export class AirtableService {
   }
 
   //#region data mapping
-  mapRawToDto(dataSets: Records<FieldSet>): DataTable {
+  mapRawToDto({ dataSets, totalCount }: mapRawToDtoParams): DataTable {
     const dataTbl: DataTable = {
       rows: [],
       headers: [],
@@ -29,9 +34,7 @@ export class AirtableService {
     dataTbl.headers = Object.keys(headerKeys).map(
       (hKey) => ({ field: hKey, title: hKey } as TblHeader),
     );
-    dataTbl.tableInfo.totalRows = Number(
-      process.env.AIRTABLE_TOTAL_RECORDS || 250,
-    );
+    dataTbl.tableInfo.totalRows = totalCount;
     dataTbl.tableInfo.title = process.env.AIRTABLE_TABLE_NAME;
     return dataTbl;
   }
@@ -56,7 +59,10 @@ export class AirtableService {
         .select()
         .all();
 
-      const res = this.mapRawToDto(recordSets);
+      const res = this.mapRawToDto({
+        dataSets: recordSets,
+        totalCount: recordSets.length,
+      });
       return res;
     } catch (error) {
       Logger.error('getTableFirstPageRecords error::', error);
