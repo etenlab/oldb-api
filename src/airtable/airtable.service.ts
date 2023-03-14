@@ -43,12 +43,22 @@ export class AirtableService {
     }).base(process.env.AIRTABLE_BASE_ID);
   }
 
+  /**
+   * No need to specify pagination params because api hardcoded to get all data from the 
+   * airtable due to error when passing 'offset' to airtable.js 
+   * So if in future you'll need to get paginated data from the Airtable, use raw http requests
+   * https://airtable.com/developers/web/api/list-records
+   *
+   */
   async getTableRecords(query?: AirtableQueryModel): Promise<DataTable> {
     try {
+
       const recordSets = await this._airtableBase(process.env.AIRTABLE_TABLE_ID)
-        .select({ pageSize: query.pageSize, offset: query.offset })
-        .firstPage();
-      return this.mapRawToDto(recordSets);
+        .select()
+        .all();
+
+      const res = this.mapRawToDto(recordSets);
+      return res;
     } catch (error) {
       Logger.error('getTableFirstPageRecords error::', error);
     }
